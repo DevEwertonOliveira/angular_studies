@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TitleComponent } from './title/title.component';
@@ -9,16 +9,23 @@ import { TitleComponent } from './title/title.component';
   standalone: true,
   imports: [CommonModule, RouterOutlet,TitleComponent],
   template: `
-  <app-title></app-title>
+  <app-title *ngIf="destruir"></app-title>
+  <br>
+  <button (click)="destruirComponent()">Destruir componente</button>
   <router-outlet></router-outlet>
   `
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
+
+  public destruir:boolean = true;
+
   constructor(){}
 
-  ngOnInit(): void{
-    setTimeout(() => {
-      console.log(1)
-    }, 5000);
+  ngOnInit(): void {
+
+  }
+
+  public destruirComponent(){
+    this.destruir = false;
   }
 }
